@@ -1,0 +1,141 @@
+* {
+	margin: auto;
+	padding: 0;
+}
+
+body {
+	font-family: sans-serif;
+	margin-top: 30px;
+	background-image: url(images/colors_1.jpg);
+	background-size: cover;
+	vertical-align: middle;
+}
+
+.center {
+	text-align: center;
+}
+
+.main {
+	width: 400px;
+	border: solid 1px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.lbl{
+	margin-top: 1em;
+	font-size: .7em;
+}
+
+.cc-form {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.txtbox {
+	border-radius: 5px;
+	vertical-align: middle;
+	text-align: center;	
+	border: solid 1px;
+	height: 1.75em;	
+}
+
+.cc4digit {
+	width: 60px;	
+	align-content: space-between;
+}
+
+.ccholder {
+	width: 100%;
+}
+
+.row {
+	margin-top: 1em;
+}
+
+.last-row {
+	margin-top: 1.25em;
+	margin-bottom: 2em;
+}
+
+.btn {
+	background-color: #246985;
+	color: white;
+	height: 2em;
+	width: 100%;
+	border-radius: 5px;
+	border-style: none;
+}
+
+.btn:hover {
+	background-color: #134c63;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.flt-right {
+	float: right;
+}
+
+.equi-distant {
+	display: flex; 
+	justify-content: space-between;
+}
+
+.ccimg {
+	border-radius: 10px;
+	margin-top: 2em;
+}
+
+.align-left {
+	text-align: left;
+}
+.cc-digits {
+	font-size: 2em;
+}
+.container {
+  position: relative;
+  color: white;
+}
+
+.cc1 {
+	 position: absolute;
+     top: 50%;
+	 left: 30px;
+}
+.cc2 {
+	 position: absolute;
+     top: 50%;
+     left: 30%;
+}
+.cc3 {
+	 position: absolute;
+     top: 50%;
+	 left: 52%;
+}
+.cc4 {
+	 position: absolute;
+     top: 50%;
+     left: 75%;
+}
+
+.holder-text {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+
+.expiry-text {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.ccv-text {
+	position: absolute;
+	top: 52%;
+	right: 40px;
+	color: black;
+}

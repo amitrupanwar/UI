@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Charts</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+
+        .svg-chart-container {
+            width: 250px;
+            height: 250px;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="chart-list" class="list"> </div>
+
+    <script type="text/javascript" src="src/my-svg-chart.js"> </script>
+    <script>
+
+        var chartList = [
+            {
+                data: [5, 10, 45, 23, 67, 53, 98],
+                options: {
+                    aspectRatio: 90 / 30,
+                }
+            },{
+                data: [75],
+                options: {
+                    aspectRatio: 90 / 30,
+                }
+            },{
+                data: [75,43],
+                options: {
+                    aspectRatio: 90 / 30,
+                }
+            }, {
+                data: [58, 96, 25, 65, 67, 11, 77],
+                options: {
+                    aspectRatio: 100 / 70,
+                    type: 'area',
+                }
+            }, {
+                data: [58, 96, -25, 65, 67, -11, 77],
+                options: {
+                    aspectRatio: 100 / 70,
+                    min: - 50,
+                    max: 100,
+                    type: 'area',
+                    strokeWidth: 1
+                }
+            },
+            {
+                data: [5, 10, 45, 23, 67, 53, 98],
+                options: {
+                    aspectRatio: 100 / 80,
+                    type: 'area',
+                    strokeColor: 'green',
+                    fillColor: 'lightgreen',
+                    showPoints: true
+                }
+            },
+            {
+                data: [5, 10, 45, 23, 67, 53, 98],
+                options: {
+                    aspectRatio: 100 / 50,
+                    type: 'bar',
+                }
+            },
+            {
+                data: [5, 10, 45, 23, 67, 53, 98],
+                options: {
+                    aspectRatio: 100 / 50,
+                    type: 'bar',
+                    barColor: 'red',
+                    barWidth: 3,
+                    barCap: 'round'
+                }
+            },
+            {
+                data: [5, 10, 45, 23, 67, 53, 98],
+                options: {
+                    aspectRatio: 100 / 50,
+                    type: 'bar',
+                    barColor: 'red',
+                    barWidth: 5,
+                    barColorFunc: function (value) {
+                        if (value > 75) {
+                            return "red";
+                        } else if (value > 50) {
+                            return "orange";
+                        } else {
+                            return "green";
+                        }
+                    },
+                }
+            },
+            {
+                data: [5, -10, 45, -23, 67, -53, 98],
+                options: {
+                    aspectRatio: 100 / 50,
+                    min: -100,
+                    max: 100,
+                    type: 'bar',
+                    barWidth: 5,
+                    barColorFunc: function (value) {
+                        if (value > 50) {
+                            return "red";
+                        } else if (value > -25) {
+                            return "orange";
+                        } else {
+                            return "green";
+                        }
+                    },
+                }
+            }
+        ];
+
+        var container = document.getElementById("chart-list");
+
+        for (var i = 0; i < chartList.length; i++) {
+            var blockDiv = document.createElement("div");
+            blockDiv.className = "svg-chart-container g" + i;
+            container.append(blockDiv);
+            var item = chartList[i];
+            var chart = createSVGChart(blockDiv, item.options, item.data);
+            item.chart = chart;
+        }
+
+
+        function loop() {
+            for (var i = 0; i < chartList.length; i++) {
+                var o = chartList[i];
+                var chart = o.chart;
+                var opts = chart.getOpts();
+                var max = opts.max;
+                var min = opts.min;
+                var range = max - min + 1;
+
+                var num = Math.random(0, 60);
+
+                num = num * 60;
+
+                var data = [];
+                for (var j = 0; j < num; j++) {
+                    var num1 = Math.random(min, max);
+                    if (max < 0) {
+                        num1 = num1 * min;
+                    } else {
+                        num1 = num1 * max;
+                    }
+                    data.push(num1);
+                }
+
+                o.chart.refreshData(data);
+            }
+            window.setTimeout(loop, 10000);
+        }
+        loop();
+
+    </script>
+</body>
+
+</html>

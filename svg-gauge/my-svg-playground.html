@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gauges</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+
+        .gauge-container {
+            width: 200px;
+            height: 200px;
+            vertical-align: middle;
+        }
+
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gauge-container.g1>.g-gauge>.g-trak-arc {
+            stroke: #79511c;
+            stroke-width: 8;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="gauge-list" class="list"> </div>
+
+    <script type="text/javascript" src="src/my-svg-gauge.js"> </script>
+    <script>
+
+        var gaugeList = [
+            {
+                options: {
+                    min: 0, max: 100, valueFontWeight: 'bold',
+                    valueFontSize: 30, valueColor: 'white',
+                    minMaxColor: 'white', minMaxFontWeight: 'bold', gaugeLineCap: 'round',a:123 ,b:'xyz'
+                }, value: 77,
+                duration: 1.5
+            }, {
+                options: {
+                    startAngle: 225, endAngle: 135,
+                    min: -100, max: -1, valPosOffsetX: 0, gaugeStrokeColor: 'yellow',
+                    trackStrokeWidth: 10,
+                    valPosOffsetY: 20, label: 'Label here', labelOffsetY: -5, lableColor: 'white'
+                }, value: -50,
+                duration: 1.5
+            }, {
+                options: {
+                    min: -1000, max: 1000, valueFontWeight: 'bold',
+                    valueColor: 'white', trackStrokeColor: 'red',
+                    minMaxColor: 'white',
+                    minMaxFontWeight: 'bold', minMaxOffsetAngle: -10,
+                    showKnob: true, knobStartAngle: 150, knobEndAngle: 30,
+                    knobRadius: 20, valPosOffsetY: 0, label: 'label here'
+                }, value: 48,
+                duration: 1
+            }, {
+                options: {
+                    startAngle: 45, endAngle: -45, trackLineCap: 'round',
+                    min: -100, max: -25, valPosOffsetX: 30, gaugeStrokeColor: 'white', showNeedle: true,
+                    trackStrokeWidth: 10, guageStrokeWidth: 5, valPosOffsetY: 0, trackFillColor: 'grey', showKnob: true, showPin: true,
+                    needleEndFactor: 1.2, needleStartFactor: -0.4,
+                }, value: -50,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showKnob: true, showPin: true,
+                    gaugeStrokeColor: 'orange', needleStrokeWidth: 3, needleColor: 'brown',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30, valueColor: 'white',
+                    needleEndFactor: 1.2, needleStartFactor: -0.4,
+                    valueMoveWithGauge: true,
+                }, value: 45,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showKnob: true, showPin: true,
+                    gaugeStrokeColor: 'orange', needleStrokeWidth: 3, needleColor: 'brown',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30, valueColor: 'white', needleOnTopofKnob: true,
+                    needleEndFactor: 1.2, needleStartFactor: -0.4,
+                    valueMoveWithGauge: true,
+                }, value: 45,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showKnob: true, showPin: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30, valueColor: 'white',
+                    needleEndFactor: 1.2, needleStartFactor: -0.4,
+                    valueMoveWithGauge: true, valueRadiusFactor: 0.65, valueOffsetAngle: 15
+                }, value: 45,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showKnob: true, showPin: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 25,
+                    needleEndFactor: 1.2, needleStartFactor: -0.4,
+                    needleType: 'triangle',
+                    minMaxRadiusFactor: 1.25,
+                    minMaxOffsetAngle: -15
+                }, value: 80,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    needleStartFactor: 0.7,
+                    needleType: 'triangle',
+                    needleBaseWidth: 8, showKnob: true, knobRadius: 15, knobColor: 'orange'
+
+                }, value: 65,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showKnob: true, showPin: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleStartFactor: -0.4,
+                    needleType: 'triangle', needleStrokeWidth: 1,
+                    needleBaseWidth: 8, needleColor: 'none'
+                }, value: 79,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleStartFactor: -0.3,
+                    needleType: 'triangle',
+                    needleBaseWidth: 8,
+                }, value: 49,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: -35, valueColor: 'black',
+                    needleStartFactor: -0.3, needleEndFactor: 0.9,
+                    needleType: 'triangle',
+                    needleBaseWidth: 8, needleColor: 'white', needleStrokeWidth: 1
+                }, value: 85,
+                duration: 1.5
+            }, {
+                options: {
+                    startAngle: 180, endAngle: 179.99, valueColor: 'white', minMaxOffsetAngle: -10, minMaxRadiusFactor: 0.75, trackFillColor: 'darkgrey',
+                    showKnob: true, knobRadius: 15, knobStrokeColor: 'yellow', knobStrokeWidth: 2, showNeedle: true,
+                    needleEndFactor: 1.3, needleStartFactor: .7,
+                    gaugeColorFunc: function (value) {
+                        if (value < 50) {
+                            return "#5ee432";
+                        } else if (value < 75) {
+                            return "yellow";
+                        } else {
+                            return "red";
+                        }
+                    },
+                    trackColorFunc: function (value) {
+                        if (value < 50) {
+                            return "green";
+                        } else if (value < 75) {
+                            return "orange";
+                        } else {
+                            return "brown";
+                        }
+                    }
+                }, value: 90,
+                duration: 5
+            }, {
+                options: {
+                    startAngle: 0, endAngle: -0.01, valueColor: 'white', minMaxOffsetAngle: -10, minMaxRadiusFactor: 0.75,
+                    showKnob: true, knobRadius: 15, knobStrokeColor: 'red', knobStrokeWidth: 2, showNeedle: true
+                }, value: 90,
+                duration: 1.5
+            }, {
+                options: {
+                    min: 0, max: 100, trackStrokeWidth: 2, gaugeStrokeColor: 'red', viewBox: "0 0 100 80",
+                    trackStrokeWidth: 2, gaugeStrokeColor: 'red', trackStrokeColor: 'brown',
+                    startAngle: 165, endAngle: 15, guageStrokeWidth: 4,
+                    displayValFunc: function (val) { return Math.round(val) + '/' + this.max; }
+                }, value: 55,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showKnob: true, showPin: true,
+                    startAngle: 270, endAngle: 0,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleEndFactor: 1.2, needleStartFactor: -0.4,
+                    needleType: 'triangle'
+                }, value: 75,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showKnob: true, showPin: true,
+                    startAngle: 225, endAngle: -45, knobColor: 'Yellow', pinColor: 'black',
+                    gaugeStrokeColor: 'orange', valueColor: 'white',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    needleBaseWidth: 30, valueMoveWithGauge: true, valueRadiusFactor: -0.35,
+                    needleEndFactor: 0.9, needleStartFactor: -0.6, needleStrokeWidth: 0,
+                    needleType: 'triangle'
+                }, value: 75,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'purple', trackStrokeColor: 'white',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: -20, valueFontWeight: 'bold',
+                    valueFontSize: 20, valueColor: 'Orange',
+                    needleStartFactor: -0.3,
+                    needleType: 'triangle', showKnob: true, knobRadius: 8,
+                    needleBaseWidth: 8, needleColor: 'white', needleStrokeWidth: 1
+                }, value: 85,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'purple', trackStrokeColor: 'white',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10, needleOnTopofKnob: true,
+                    valPosOffsetY: -20, valueFontWeight: 'bold',
+                    valueFontSize: 20, valueColor: 'white',
+                    needleStartFactor: -0.3, showPin: true,
+                    needleType: 'triangle', showKnob: true, knobRadius: 8,
+                    needleBaseWidth: 8, needleColor: 'white', needleStrokeWidth: 1,
+                    pinRadius: 3, needleColor: 'purple'
+                }, value: 39,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    needleStartFactor: 0.6, needleColor: 'white', needleStrokeWidth: 1,
+                    needleType: 'triangle', needleBaseWidth: 10, valueFontWeight: 'bold',
+                    needleBaseWidth: 4, showKnob: true, knobRadius: 15, knobColor: 'orange'
+
+                }, value: 44,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleType: 'polygon',
+                    needleBaseWidth: 8, showPin: true
+                }, value: 49,
+                duration: 1.5
+            }
+            , {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleType: 'polygon', needleStrokeWidth: 0,
+                    needleBaseWidth: 8, needlePointsConf: [{
+                        radiusFactor: 1,
+                        width: 0
+                    },
+                    {
+                        radiusFactor: 0,
+                        width: 10
+                    }, {
+                        radiusFactor: .5,
+                        width: 0
+                    }]
+
+                }, value: 49,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleType: 'polygon',
+                    needlePointsConf: [{
+                        radiusFactor: 1,
+                        width: 0
+                    },
+                    {
+                        radiusFactor: 0.05,
+                        width: 5
+                    },
+                    {
+                        radiusFactor: 0.045,
+                        width: 16
+                    },
+                    {
+                        radiusFactor: -0.045,
+                        width: 16
+                    }
+                        , {
+                        radiusFactor: -.3,
+                        width: 0
+                    }]
+
+                }, value: 49,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleType: 'polygon',
+                    needlePointsConf: [{
+                        radiusFactor: 1,
+                        width: 0
+                    },
+                    {
+                        radiusFactor: 0.8,
+                        width: 8
+                    },
+                    {
+                        radiusFactor: 0.9,
+                        width: 2
+                    },
+                    {
+                        radiusFactor: 0.05,
+                        width: 2
+                    }, {
+                        radiusFactor: -0.05,
+                        width: 12
+                    }, {
+                        radiusFactor: -0.15,
+                        width: 12
+                    }
+                        , {
+                        radiusFactor: 0,
+                        width: 0
+                    }]
+
+                }, value: 49,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleType: 'polygon',
+                    needlePointsConf: [{
+                        radiusFactor: 0.85,
+                        width: 0
+                    },
+                    {
+                        radiusFactor: 0.65,
+                        width: 10
+                    },
+                    {
+                        radiusFactor: 0.8,
+                        width: 1
+                    },
+                    {
+                        radiusFactor: 0,
+                        width: 2
+                    }, {
+                        radiusFactor: -0.1,
+                        width: 10
+                    }, {
+                        radiusFactor: -0.12,
+                        width: 10
+                    }, {
+                        radiusFactor: -0.03,
+                        width: 2
+                    },
+                    {
+                        radiusFactor: -0.09,
+                        width: 2
+                    }, {
+                        radiusFactor: -0.19,
+                        width: 10
+                    }, {
+                        radiusFactor: -0.21,
+                        width: 10
+                    }, {
+                        radiusFactor: -0.12,
+                        width: 2
+                    },
+                    {
+                        radiusFactor: -0.15,
+                        width: 0
+                    }]
+
+                }, value: 49,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    needleStartFactor: 0.7,
+                    needleType: 'widepointer',
+                    needleBaseWidth: 8, showKnob: true, knobRadius: 15, knobColor: 'orange'
+
+                }, value: 65,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true, showPin: true, pinRadius: 4,
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    needleType: 'widepointer', knobStrokeWidth: 1,
+                    showKnob: true, knobRadius: 8, valueMoveWithGauge: true, valueColor: 'white'
+
+                }, value: 65,
+                duration: 1.5
+            }, {
+                options: {
+                    showNeedle: true,
+                    gaugeStrokeColor: 'orange',
+                    trackStrokeWidth: 10, guageStrokeWidth: 10,
+                    valPosOffsetY: 30,
+                    needleType: 'polygon',
+                    needlePointsConf: [{
+                        radiusFactor: 0.85,
+                        width: 0
+                    },
+                    {
+                        radiusFactor: 0.65,
+                        width: 2
+                    },
+                    {
+                        radiusFactor: 0.05,
+                        width: 3
+                    },
+                    {
+                        radiusFactor: 0.07,
+                        width: 10
+                    }, {
+                        radiusFactor: 0.03,
+                        width: 10
+                    }, {
+                        radiusFactor: 0.01,
+                        width: 2
+                    }, {
+                        radiusFactor: -0.3,
+                        width: 2
+                    }, {
+                        radiusFactor: -0.35,
+                        width: 4
+                    }
+                ]
+
+                }, value: 49,
+            duration: 1.5
+            }
+        ];
+
+        var container = document.getElementById("gauge-list");
+
+        for (var i = 0; i < gaugeList.length; i++) {
+            var blockDiv = document.createElement("div");
+            blockDiv.className = "gauge-container g" + i;
+            container.append(blockDiv);
+            var item = gaugeList[i];
+            var gauge = createSVGgauge(blockDiv, item.options);
+            gauge.setValueAnimated(item.value, item.duration);
+            item.gauge = gauge;
+        }
+
+        function loop() {
+            for (var i = 0; i < gaugeList.length; i++) {
+                var o = gaugeList[i];
+                var gauge = o.gauge;
+                var opts = gauge.getOpts();
+                var max = opts.max;
+                var min = opts.min;
+                var range = max - min + 1;
+
+                var num = Math.random(min, max);
+                if (max < 0) {
+                    num = num * min;
+                } else {
+                    num = num * max;
+                }
+
+                o.gauge.setValueAnimated(num, o.duration);
+            }
+            window.setTimeout(loop, 8000);
+            gaugeList[0].gauge.setValueColor('red');
+            gaugeList[0].gauge.setMinMaxColor('red');
+        }
+        loop();
+
+    </script>
+</body>
+
+</html>

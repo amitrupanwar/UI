@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CC</title>
+	<link rel="stylesheet" type="text/css" href="styles_cc.css">
+	<script src="cc_entry.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="center">
+			<div id="ccfront" class="container">
+			<img class="ccimg" id="ccImageFront" name="ccImageFront" src="images/cc_front.jpg">
+			<span class="cc-digits cc1" id="cc1text">1234</span>
+			<span class="cc-digits cc2" id="cc2text">1234</span>
+			<span class="cc-digits cc3" id="cc3text">1233</span>
+			<span class="cc-digits cc4" id="cc4text">3333</span>				
+			<span class="holder-text" id="holdertext">Amit Rupanwar</span>
+			<span class="expiry-text" id="expirytext">07/20</span>
+		</div>
+		<div id="ccback" class="container" style="display: none;">
+			<img class="ccimg" id="ccImageBack" name="ccImageBack" src="images/cc_back.jpg">
+			<span class="ccv-text" id="ccvtext">999</span>
+		</div>
+
+		</div>
+		<div class="cc-form">
+			<form action="submit">
+				<div class="row">
+					<label class="lbl">CARD NUMBER</label>
+					<br>
+					<div class="equi-distant">
+						<input class="cc4digit txtbox" type="text" name="cc1" id="cc1" maxlength="4" minlength="4" onkeyup="replaceCC1Text()" required>
+						<input class="cc4digit txtbox" type="text" name="cc2" id="cc2" maxlength="4" minlength="4" onkeyup="replaceCC2Text()" required>
+						<input class="cc4digit txtbox" type="text" name="cc3" id="cc3" maxlength="4" minlength="4" onkeyup="replaceCC3Text()" required>
+						<input class="cc4digit txtbox" type="text" name="cc4" id="cc4" maxlength="4" minlength="4" onkeyup="replaceCC4Text()" required>		
+					</div>
+				</div>
+				<div class="row">
+					<label class="lbl">CARD HOLDER NAME</label>
+					<br>
+					<input class="ccholder txtbox align-left" type="text" name="holdername" id="holdername" onkeyup="replaceHolderText()" required>		
+				</div>
+				<div class="row">
+					<span>
+						<div class="inline-block">
+							<label class="lbl">EXPIRATION DATE</label>
+							<br>
+							<select class="txtbox cc4digit" id='expMonth' name="expMonth" onchange="replaceExpiryText()" required>					
+								<option selected value='01'>Jan</option>
+								<option value='02'>Feb</option>
+								<option value='03'>Mar</option>
+								<option value='04'>Apr</option>
+								<option value='05'>May</option>
+								<option value='06'>Jun</option>
+								<option value='07'>Jul</option>
+								<option value='08'>Aug</option>
+								<option value='09'>Sep</option>
+								<option value='10'>Oct</option>
+								<option value='11'>Nov</option>
+								<option value='12'>Dec</option>
+							</select>
+							<select class="txtbox cc4digit" type="text" id="expYear"  name="expYear" onchange="replaceExpiryText()" required>
+							</select>
+						</div>	
+					</span>
+					<span>
+						<div class="inline-block flt-right">
+							<label class="lbl">CCV</label>
+							<br>
+							<input  class="txtbox cc4digit" type="text" name="ccv" id="ccv" maxlength="3" minlength="3" onkeyup="replaceCCVText()" 
+							onfocus="displayBack()" onfocusout="displayFront()" required>	
+						</div>
+					</span>
+				</div>
+				<div class="last-row">
+					<input class="btn" type="submit" name="sumit" value="SUBMIT">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

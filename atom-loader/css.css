@@ -1,0 +1,272 @@
+:root {
+    --atom-loader-size: 80px;
+    --atom-loader-color-hex: #ff5252;
+    --atom-loader-color-hex-2: #f50057;
+    --atom-loader-color-rgb: 0, 10, 65;
+    --atom-nucleus-size: calc(var(--atom-loader-size) / 5);
+    --atom-electron-color-hex: #000730;
+    --atom-electron-orbit-size: calc(var(--atom-loader-size) / 2.5);
+    --atom-electron-size: calc(var(--atom-loader-size) / 20);
+    --atom-electron-speed: 1.2s;
+    --atom-electron-speed-alpha: 1s;
+    --atom-electron-speed-omega: 0.8s;
+}
+
+/* Uses as below -- copy below block and paste in code. adjust placement of loader in wrapper div
+<div class="atom-loader-wrapper ">  wrapper element not compulsary, mostly used for loader positioning
+    <div class="atom-loader-container">
+        <div class="atom-loader">
+            <div class="atom-electron"></div>
+            <div class="atom-electron-alpha"></div>
+            <div class="atom-electron-omega"></div>
+        </div>
+    </div>
+</div>
+
+add css -- not compulsary and class name can be changed as needed
+.atom-loader-wrapper{
+    for positionig 
+}
+
+*/
+
+.atom-loader-container,
+.atom-loader-container:before,
+.atom-loader-container::after {
+    box-sizing: border-box;
+}
+.atom-loader {
+    position: relative;
+    width: var(--atom-loader-size);
+    height: var(--atom-loader-size);
+    animation: 8s atom-loader infinite cubic-bezier(1, 0.25, 0, 0.75);
+}
+@keyframes atom-loader {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    12.5% {
+        transform: rotate(-45deg) scale(0.9);
+    }
+    25% {
+        transform: rotate(-90deg) scale(1);
+    }
+    37.5% {
+        transform: rotate(-135deg) scale(0.9);
+    }
+    50% {
+        transform: rotate(-180deg) scale(1);
+    }
+    62.5% {
+        transform: rotate(-225deg) scale(0.9);
+    }
+    75% {
+        transform: rotate(-270deg) scale(1);
+    }
+    87.5% {
+        transform: rotate(-315deg) scale(0.9);
+    }
+    100% {
+        transform: rotate(-360deg) scale(1);
+    }
+}
+.atom-loader::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--atom-nucleus-size);
+    height: var(--atom-nucleus-size);
+    margin-top: calc(var(--atom-nucleus-size) / -2);
+    margin-left: calc(var(--atom-nucleus-size) / -2);
+    background: linear-gradient(to right, var(--atom-loader-color-hex), var(--atom-loader-color-hex-2));
+    border-radius: 100%;
+    box-shadow: 0 0 3px 0 var(--atom-loader-color-hex);
+    animation: 2s atom-nucleus infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+@keyframes atom-nucleus {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(0.85);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.atom-loader > [class^="atom-electron"] {
+    border-top: solid rgba(var(--atom-loader-color-rgb), 0.75) 1px;
+    border-right: solid rgba(var(--atom-loader-color-rgb), 0.55) 2px;
+    border-bottom: solid rgba(var(--atom-loader-color-rgb), 0.35) 4px;
+    border-left: solid rgba(var(--atom-loader-color-rgb), 0.15) 2px;
+    border-radius: 100%;
+    width: 100%;
+    height: var(--atom-electron-orbit-size);
+    position: absolute;
+    top: 50%;
+    margin-top: calc(var(--atom-electron-orbit-size) / -2);
+    animation: var(--atom-electron-speed) atom-electron-orbit infinite linear;
+}
+.atom-loader > .atom-electron-alpha {
+    transform: rotate(60deg);
+    animation: var(--atom-electron-speed-alpha) atom-electron-orbit infinite linear;
+}
+.atom-loader > .atom-electron-omega {
+    transform: rotate(-60deg);
+    animation: var(--atom-electron-speed-omega) atom-electron-orbit infinite linear;
+}
+@keyframes atom-electron-orbit {
+    0% {
+        border-top: solid rgba(var(--atom-loader-color-rgb), 0.75) 1px;
+        border-right: solid rgba(var(--atom-loader-color-rgb), 0.55) 2px;
+        border-bottom: solid rgba(var(--atom-loader-color-rgb), 0.35) 4px;
+        border-left: solid rgba(var(--atom-loader-color-rgb), 0.15) 2px;
+    }
+    25% {
+        border-top: solid rgba(var(--atom-loader-color-rgb), 0.55) 1px;
+        border-right: solid rgba(var(--atom-loader-color-rgb), 0.35) 2px;
+        border-bottom: solid rgba(var(--atom-loader-color-rgb), 0.15) 4px;
+        border-left: solid rgba(var(--atom-loader-color-rgb), 0.75) 2px;
+    }
+    50% {
+        border-top: solid rgba(var(--atom-loader-color-rgb), 0.35) 1px;
+        border-right: solid rgba(var(--atom-loader-color-rgb), 0.15) 2px;
+        border-bottom: solid rgba(var(--atom-loader-color-rgb), 0.75) 4px;
+        border-left: solid rgba(var(--atom-loader-color-rgb), 0.55) 2px;
+    }
+    75% {
+        border-top: solid rgba(var(--atom-loader-color-rgb), 0.15) 1px;
+        border-right: solid rgba(var(--atom-loader-color-rgb), 0.75) 2px;
+        border-bottom: solid rgba(var(--atom-loader-color-rgb), 0.55) 4px;
+        border-left: solid rgba(var(--atom-loader-color-rgb), 0.35) 2px;
+    }
+    100% {
+        border-top: solid rgba(var(--atom-loader-color-rgb), 0.75) 1px;
+        border-right: solid rgba(var(--atom-loader-color-rgb), 0.55) 2px;
+        border-bottom: solid rgba(var(--atom-loader-color-rgb), 0.35) 4px;
+        border-left: solid rgba(var(--atom-loader-color-rgb), 0.15) 2px;
+    }
+}
+.atom-loader > [class^="atom-electron"]::after {
+    content: "";
+    display: block;
+    width: var(--atom-electron-size);
+    height: var(--atom-electron-size);
+    background: var(--atom-electron-color-hex);
+    border-radius: 50%;
+    margin-top: calc(var(--atom-electron-size) / -2);
+    position: absolute;
+    top: 50%;
+    left: calc(var(--atom-electron-size) / -1);
+    transform: scale(1);
+    animation: calc(var(--atom-electron-speed) * 2) atom-electron infinite ease-in-out;
+}
+.atom-loader .atom-electron-alpha::after {
+    animation: calc(var(--atom-electron-speed-alpha) * 2) atom-electron infinite ease-in-out;
+}
+.atom-loader .atom-electron-omega::after {
+    animation: calc(var(--atom-electron-speed-omega) * 2) atom-electron infinite ease-in-out;
+}
+@keyframes atom-electron {
+    0% {
+        left: calc(var(--atom-electron-size) / -1);
+        transform: scale(1);
+    }
+    12.5% {
+        top: 100%;
+        transform: scale(1.5);
+    }
+    25% {
+        left: 100%;
+        transform: scale(1);
+    }
+    37.5% {
+        top: 0%;
+        transform: scale(0.25);
+    }
+    50% {
+        left: calc(var(--atom-electron-size) / -1);
+        transform: scale(1);
+    }
+    62.5% {
+        top: 100%;
+        transform: scale(1.5);
+    }
+    75% {
+        left: 100%;
+        transform: scale(1);
+    }
+    87.5% {
+        top: 0%;
+        transform: scale(0.25);
+    }
+    100% {
+        left: calc(var(--atom-electron-size) / -1);
+        transform: scale(1);
+    }
+}
+.atom-loader-container {
+    position: relative;
+}
+.atom-loader-container::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 115%;
+    left: 0;
+    width: var(--atom-loader-size);
+    height: var(--atom-nucleus-size);
+    background-image: radial-gradient(closest-side, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    border-radius: 100%;
+    transform: scale(1, 0.8);
+    animation: 8s atom-loader-shadow infinite cubic-bezier(1, 0.25, 0, 0.75);
+}
+@keyframes atom-loader-shadow {
+    0% {
+        transform: scale(1, 0.8) translatey(0);
+    }
+    12.5% {
+        transform: scale(0.7, 0.7) translatey(-20px);
+    }
+    25% {
+        transform: scale(1, 0.8) translatey(0);
+    }
+    37.5% {
+        transform: scale(0.7, 0.7) translatey(-20px);
+    }
+    50% {
+        transform: scale(1, 0.8) translatey(0);
+    }
+    62.5% {
+        transform: scale(0.7, 0.7) translatey(-20px);
+    }
+    75% {
+        transform: scale(1, 0.8) translatey(0);
+    }
+    87.5% {
+        transform: scale(0.7, 0.7) translatey(-20px);
+    }
+    100% {
+        transform: scale(1, 0.8) translatey(0);
+    }
+}
+
+.atom-loader-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+}
